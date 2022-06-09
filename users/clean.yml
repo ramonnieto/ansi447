@@ -1,0 +1,10 @@
+- name: Remove users listed in file
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Remove remote users
+      user:
+        name: "{{ item }}"
+        state: absent
+      loop: "{{ query('lines','cat users.txt') }}"
+

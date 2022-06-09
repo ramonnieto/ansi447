@@ -1,0 +1,7 @@
+---
+- name: Ensure stub web content is deployed
+  vars:
+    locale: "{{ ansible_facts.env.LANG | default(controller_lang) }}"
+  copy:
+    content: "{{ lookup('template','webapp.' + locale + '.j2') }}"
+    dest: /var/www/html/index.html
